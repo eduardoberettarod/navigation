@@ -1,9 +1,17 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack'
 
 import Home from "@/app/Home";
 import Produto from "@/app/Produto";
 
-const Stack = createNativeStackNavigator()
+export type availableRoutes = {
+    home: undefined,
+    produto: undefined | { id: string }
+}
+
+export type StackRoutesProps<currentRoute extends keyof availableRoutes>
+    = NativeStackScreenProps<availableRoutes, currentRoute>
+
+const Stack = createNativeStackNavigator<availableRoutes>()
 
 export default function StackRoutes() {
     return (
